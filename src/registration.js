@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import Logo from "./Logo";
-// import axios from "./axios";
+import axios from "./axios";
 // import App from "./App";
 
 class Registration extends Component {

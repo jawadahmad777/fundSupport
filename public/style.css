@@ -48,15 +48,15 @@ select {
 .navigation {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width: 25%;
   font-size: 18px;
   text-align: center;
   padding: 20px 0;
-  margin-left: 70%;
+  margin-left: 76%;
 }
 .navigation li {
   list-style: none;
   display: inline;
-  padding: 0 20px 0 20px;
 }
 .navigation li a {
   text-decoration: none;

@@ -54,16 +54,16 @@ app.post("/registration", (req, res) => {
               req.body.email,
               hashedPassword,
               req.body.project,
-              req.body.organization,
+              req.body.orginization,
               req.body.website
             ).then(results => {
               req.session.isLoggedIn = true;
               console.log(results);
               req.session.userId = results.id;
-              res.json({
-                success: true,
-                message: "User created successfully"
-              });
+            });
+            res.json({
+              success: true,
+              message: "User created successfully"
             });
           })
           .catch(err => {
@@ -79,7 +79,50 @@ app.post("/registration", (req, res) => {
     });
   }
 });
+///////////////////////////////////////////////////////////////////////////////////
+app.post("/login", (req, res) => {
+  var userInfo;
+  if (req.body.email == "" || req.body.password == "") {
+    res.json({
+      success: false,
+      message: "Please Fill in the whole fields"
+    });
+  } else {
+    db.checkEmail(req.body.email).then(results => {
+      if (results.length == 0) {
+        res.json({
+          success: false,
+          message: "E-Mail does not exist, Please try again"
+        });
+      } else {
+        userInfo = results[0];
+        const hashedPwd = userInfo.hashed_password;
+        bcrypt.checkPassword(req.body.password, hashedPwd).then(checked => {
+          if (checked) {
+            req.session.isLoggedIn = true;
+            req.session.userId = userInfo.id;
+            res.json({
+              success: true,
+              message: "User Logged in successfully"
+            });
+          } else {
+            res.json({
+              success: false,
+              message: "Password does not match, Please try again"
+            });
+          }
+        });
+      }
+    });
+  }
+});
+///////////////////////////////////////////////////////////////////////////
 
+app.get("/welcome", (req, res) => {
+  req.session.isLoggedIn
+    ? res.redirect("/")
+    : res.sendFile(`${__dirname}/index.html`);
+});
 ///////////////////////////////////////////////////////////////////////////////////////
 app.get("*", function(req, res) {
   res.sendFile(__dirname + "/index.html");

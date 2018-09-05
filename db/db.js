@@ -3,7 +3,7 @@ let db; //connecting to heroku or localhost
 if (process.env.DATABASE_URL) {
   db = spicedPg(process.env.DATABASE_URL);
 } else {
-  db = spicedPg("postgres:postgres:postgres@localhost:5432/socialnetwork");
+  db = spicedPg("postgres:postgres:postgres@localhost:5432/fundsupport");
 }
 //////////////////////////////////////////////////////////////////////
 exports.createUser = function(
@@ -27,6 +27,15 @@ exports.createUser = function(
     orginization,
     website
   ];
+  return db.query(query, params).then(results => {
+    return results.rows[0];
+  });
+};
+///////////////////////////////////////////////////////
+exports.source = function(source) {
+  const query = "select source from source where source = $1;";
+
+  const params = [source];
   return db.query(query, params).then(results => {
     return results.rows[0];
   });

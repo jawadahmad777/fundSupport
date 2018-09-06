@@ -63,8 +63,8 @@ app.post("/registration", (req, res) => {
                 req.session.userId = results.id;
               })
               .then(results => {
-                console.log(req.body, "soooooo");
-                console.log(req.session, "sessionhjjhjkjkjk");
+                console.log(req.body, "Req.body is here ");
+                console.log(req.session, "testing for session!");
                 db.sourceIt(req.body.source, req.session.userId).then(
                   source => {
                     console.log(source, "i am the source");
@@ -110,7 +110,7 @@ app.post("/login", (req, res) => {
         userInfo = results[0];
         const hashedPwd = userInfo.hashed_password;
         bcrypt.checkPassword(req.body.password, hashedPwd).then(checked => {
-          console.log(checked, "here is the checked thing");
+          console.log(checked, "here is the checked");
           if (checked) {
             req.session.isLoggedIn = true;
             req.session.userId = userInfo.id;

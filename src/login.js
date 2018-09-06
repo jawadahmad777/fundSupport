@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "./axios";
-
+import Wellcome from "./wellcome";
 class Login extends Component {
   constructor() {
     super();
@@ -16,6 +16,7 @@ class Login extends Component {
   handleSubmit(e) {
     e.preventDefault();
     axios.post("/login", this.state).then(resp => {
+      console.log(resp);
       if (resp.data.success) {
         this.setState({
           isLoggedIn: true
@@ -25,9 +26,9 @@ class Login extends Component {
   }
 
   render() {
-    // if (this.state.isLoggedIn) {
-    //   return <App />;
-    // }
+    if (this.state.isLoggedIn) {
+      return <Wellcome />;
+    }
     return (
       <div className="login">
         <h1 className="registrationInfo">Login here</h1>

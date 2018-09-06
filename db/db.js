@@ -32,10 +32,9 @@ exports.createUser = function(
   });
 };
 ///////////////////////////////////////////////////////
-exports.source = function(source) {
-  const query = "select source from source where source = $1;";
-
-  const params = [source];
+exports.sourceIt = function(source, source_id) {
+  const query = `INSERT into source (source, source_id ) VALUES ($1, $2);`;
+  const params = [source, source_id];
   return db.query(query, params).then(results => {
     return results.rows[0];
   });
@@ -48,3 +47,4 @@ exports.checkEmail = function(email) {
     return results.rows;
   });
 };
+//

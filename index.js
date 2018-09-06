@@ -28,7 +28,7 @@ app.use(
 );
 ///////////////////////////////////////////////////////////////////////////////////////
 app.post("/registration", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   if (
     req.body.firstName == "" ||
     req.body.lastName == "" ||
@@ -56,11 +56,23 @@ app.post("/registration", (req, res) => {
               req.body.project,
               req.body.orginization,
               req.body.website
-            ).then(results => {
-              req.session.isLoggedIn = true;
-              console.log(results);
-              req.session.userId = results.id;
-            });
+            )
+              .then(results => {
+                req.session.isLoggedIn = true;
+                console.log(results);
+                req.session.userId = results.id;
+              })
+              .then(results => {
+                console.log(req.body, "soooooo");
+                console.log(req.session, "sessionhjjhjkjkjk");
+                db.sourceIt(req.body.source, req.session.userId).then(
+                  source => {
+                    console.log(source, "i am the source");
+                    res.json(source);
+                  }
+                );
+              });
+
             res.json({
               success: true,
               message: "User created successfully"
@@ -98,6 +110,7 @@ app.post("/login", (req, res) => {
         userInfo = results[0];
         const hashedPwd = userInfo.hashed_password;
         bcrypt.checkPassword(req.body.password, hashedPwd).then(checked => {
+          console.log(checked, "here is the checked thing");
           if (checked) {
             req.session.isLoggedIn = true;
             req.session.userId = userInfo.id;

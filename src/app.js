@@ -1,5 +1,5 @@
 import React from "react";
-// import axios from "./axios";
+
 import Registration from "./registration";
 import Login from "./login";
 import Navigation from "./navigation";

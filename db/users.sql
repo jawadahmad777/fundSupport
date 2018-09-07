@@ -9,5 +9,6 @@ CREATE TABLE users (
     project VARCHAR(255),
     orginization VARCHAR(255),
     website VARCHAR(255),
+    source  VARCHAR(255),
     create_at timestamp default CURRENT_TIMESTAMP
 );

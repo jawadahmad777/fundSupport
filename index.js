@@ -28,7 +28,7 @@ app.use(
 );
 ///////////////////////////////////////////////////////////////////////////////////////
 app.post("/registration", (req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
   if (
     req.body.firstName == "" ||
     req.body.lastName == "" ||
@@ -36,7 +36,8 @@ app.post("/registration", (req, res) => {
     req.body.password == "" ||
     req.body.project == "" ||
     req.body.orginization == "" ||
-    req.body.website == ""
+    req.body.website == "" ||
+    req.body.source == ""
   ) {
     res.json({
       success: false,
@@ -55,28 +56,27 @@ app.post("/registration", (req, res) => {
               hashedPassword,
               req.body.project,
               req.body.orginization,
-              req.body.website
-            )
-              .then(results => {
-                req.session.isLoggedIn = true;
-                console.log(results);
-                req.session.userId = results.id;
-              })
-              .then(results => {
-                console.log(req.body, "Req.body is here ");
-                console.log(req.session, "testing for session!");
-                db.sourceIt(req.body.source, req.session.userId).then(
-                  source => {
-                    console.log(source, "i am the source");
-                    res.json(source);
-                  }
-                );
+              req.body.website,
+              req.body.source
+            ).then(results => {
+              req.session.isLoggedIn = true;
+              console.log(results);
+              req.session.userId = results.id;
+              res.json({
+                success: true,
+                message: "User created successfully"
               });
-
-            res.json({
-              success: true,
-              message: "User created successfully"
             });
+            // .then(results => {
+            //   console.log(req.body, "Req.body is here ");
+            //   console.log(req.session, "testing for session!");
+            //   db.sourceIt(req.body.source, req.session.userId).then(
+            //     source => {
+            //       console.log(source, "i am the source");
+            //       res.json(source);
+            //     }
+            //   );
+            // });
           })
           .catch(err => {
             console.log(err);
@@ -141,7 +141,7 @@ app.get("*", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.listen(8080, function() {
+app.listen(process.env.PORT || 8080, function() {
   console.log("I'm listening.");
 });
 ////////////////////////////////////////////////////////////////////////////////

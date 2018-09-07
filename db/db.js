@@ -13,10 +13,11 @@ exports.createUser = function(
   password,
   project,
   orginization,
-  website
+  website,
+  source
 ) {
   const query =
-    "INSERT INTO users (first_name, last_name,email, hashed_password, project, orginization, website) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *";
+    "INSERT INTO users (first_name, last_name,email, hashed_password, project, orginization, website,  source) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *";
 
   const params = [
     firstName,
@@ -25,20 +26,21 @@ exports.createUser = function(
     password,
     project,
     orginization,
-    website
+    website,
+    source
   ];
   return db.query(query, params).then(results => {
     return results.rows[0];
   });
 };
 ///////////////////////////////////////////////////////
-exports.sourceIt = function(source, source_id) {
-  const query = `INSERT into source (source, source_id ) VALUES ($1, $2);`;
-  const params = [source, source_id];
-  return db.query(query, params).then(results => {
-    return results.rows[0];
-  });
-};
+// exports.sourceIt = function(source, source_id) {
+//   const query = `INSERT into source (source, source_id ) VALUES ($1, $2);`;
+//   const params = [source, source_id];
+//   return db.query(query, params).then(results => {
+//     return results.rows[0];
+//   });
+// };
 /////////////////////////////////////////////////////////
 exports.checkEmail = function(email) {
   const q = "SELECT * FROM users WHERE email = $1;";

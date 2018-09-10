@@ -5,6 +5,28 @@ if (process.env.DATABASE_URL) {
 } else {
   db = spicedPg("postgres:postgres:postgres@localhost:5432/fundsupport");
 }
+//////////////////////////////////////////////////////////////////////////
+exports.orginizationProfile = function(
+  OrginizationName,
+  address,
+  country,
+  legalEntity,
+  contactPerson
+) {
+  const query =
+    "INSERT INTO orginization (  orginization_name, address, country, legal_entity, contact_person) VALUES ($1, $2, $3, $4, $5) RETURNING *";
+
+  const params = [
+    OrginizationName,
+    address,
+    country,
+    legalEntity,
+    contactPerson
+  ];
+  return db.query(query, params).then(results => {
+    return results.rows[0];
+  });
+};
 //////////////////////////////////////////////////////////////////////
 exports.createUser = function(
   firstName,

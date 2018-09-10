@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "./axios";
-import Wellcome from "./wellcome";
+import OrginizationProfile from "./orginizationProfile";
 class Registration extends Component {
   constructor() {
     super();
@@ -26,7 +26,7 @@ class Registration extends Component {
   }
   render() {
     if (this.state.isLoggedIn) {
-      return <Wellcome />;
+      return <OrginizationProfile />;
     }
     return (
       <div className="registration">

@@ -64,3 +64,6 @@ select {
 .navigation a:hover {
   color: silver;
 }
+.some {
+  font-size: 18px;
+}

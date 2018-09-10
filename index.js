@@ -26,6 +26,36 @@ app.use(
     maxAge: 1000 * 60 * 60 * 24 * 14
   })
 );
+////////////////////////////////////////////////////////////////////////////////////
+app.post("/organizationProfile", (req, res) => {
+  console.log(req.body);
+  if (
+    req.body.orginization == "" ||
+    req.body.address == "" ||
+    req.body.country == "" ||
+    req.body.legalentity == "" ||
+    req.body.contactperson == ""
+  ) {
+    res.json({
+      success: false,
+      message: "Please Fill in the whole fields"
+    });
+  } else {
+    db.orginizationProfile(
+      req.body.orginization,
+      req.body.address,
+      req.body.country,
+      req.body.legalentity,
+      req.body.contactperson
+    );
+    req.session.loggedIn = false;
+    res.json({
+      success: false,
+      message: "Duplicate Email found, Please use another email address"
+    });
+  }
+});
+
 ///////////////////////////////////////////////////////////////////////////////////////
 app.post("/registration", (req, res) => {
   console.log(req.body);

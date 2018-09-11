@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "./axios";
 import OrginizationProfile from "./orginizationProfile";
+import App from "./app";
 class Login extends Component {
   constructor() {
     super();
@@ -21,13 +22,14 @@ class Login extends Component {
         this.setState({
           isLoggedIn: true
         });
+        location.replace("/");
       }
     });
   }
 
   render() {
     if (this.state.isLoggedIn) {
-      return <OrginizationProfile />;
+      return <App />;
     }
     return (
       <div className="login">

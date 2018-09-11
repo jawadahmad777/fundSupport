@@ -2,9 +2,9 @@ import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import axios from "./axios";
 import { BrowserRouter, Route } from "react-router-dom";
-import OrginizationProfile1 from "./orginizationProfile1";
-import OrginizationProfile2 from "./orginizationProfile2";
-import OrginizationProfile3 from "./orginizationProfile3";
+// import OrginizationProfile1 from "./orginizationProfile1";
+// import OrginizationProfile2 from "./orginizationProfile2";
+// import OrginizationProfile3 from "./orginizationProfile3";
 
 class OrginizationProfile extends Component {
   constructor() {
@@ -368,9 +368,6 @@ class OrginizationProfile extends Component {
 
           <button type="submit">Sign Up</button>
         </form>
-        <OrginizationProfile1 />
-        <OrginizationProfile2 />
-        <OrginizationProfile3 />
       </div>
     );
   }

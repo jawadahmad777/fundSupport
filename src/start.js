@@ -1,5 +1,8 @@
 import React from "react";
-import App from "./app";
 import ReactDOM from "react-dom";
-
-ReactDOM.render(<App />, document.querySelector("main"));
+import Welcome from "./welcome";
+import App from "./app";
+ReactDOM.render(
+  location.pathname == "/welcome" ? <Welcome /> : <App />,
+  document.querySelector("main")
+);

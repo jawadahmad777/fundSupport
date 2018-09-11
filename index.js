@@ -27,7 +27,35 @@ app.use(
   })
 );
 ////////////////////////////////////////////////////////////////////////////////////
-app.post("/organizationProfile", (req, res) => {
+app.post("/orginizationProfile1", (req, res) => {
+  console.log(req.body);
+  if (
+    req.body.email == "" ||
+    req.body.phone == "" ||
+    req.body.website == "" ||
+    req.body.fields == ""
+  ) {
+    res.json({
+      success: false,
+      message: "Please Fill in the whole fields"
+    });
+  } else {
+    db.orginizationProfile1(
+      req.body.email,
+      req.body.phone,
+      req.body.website,
+      req.body.fields
+    );
+    req.session.loggedIn = false;
+    res.json({
+      success: false,
+      message: "Duplicate Email found, Please use another email address"
+    });
+  }
+});
+
+///////////////////////////////////////////////////////////////////////////////////////
+app.post("/orginizationProfile", (req, res) => {
   console.log(req.body);
   if (
     req.body.orginization == "" ||
@@ -97,16 +125,6 @@ app.post("/registration", (req, res) => {
                 message: "User created successfully"
               });
             });
-            // .then(results => {
-            //   console.log(req.body, "Req.body is here ");
-            //   console.log(req.session, "testing for session!");
-            //   db.sourceIt(req.body.source, req.session.userId).then(
-            //     source => {
-            //       console.log(source, "i am the source");
-            //       res.json(source);
-            //     }
-            //   );
-            // });
           })
           .catch(err => {
             console.log(err);
@@ -148,6 +166,7 @@ app.post("/login", (req, res) => {
               success: true,
               message: "User Logged in successfully"
             });
+            res.redirect("/orginizationProfile");
           } else {
             res.json({
               success: false,
@@ -159,17 +178,23 @@ app.post("/login", (req, res) => {
     });
   }
 });
+
 ///////////////////////////////////////////////////////////////////////////
+function checkLogin(req, res, next) {
+  !req.session.isLoggedIn ? res.redirect("/welcome") : next();
+}
 
 app.get("/welcome", (req, res) => {
   req.session.isLoggedIn
     ? res.redirect("/")
     : res.sendFile(`${__dirname}/index.html`);
 });
+
+app.get("*", checkLogin, (req, res) => res.sendFile(`${__dirname}/index.html`));
 ///////////////////////////////////////////////////////////////////////////////////////
-app.get("*", function(req, res) {
-  res.sendFile(__dirname + "/index.html");
-});
+// app.get("*", function(req, res) {
+//   res.sendFile(__dirname + "/index.html");
+// });
 
 app.listen(process.env.PORT || 8080, function() {
   console.log("I'm listening.");

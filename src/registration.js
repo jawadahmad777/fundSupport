@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "./axios";
+import App from "./app";
 import OrginizationProfile from "./orginizationProfile";
 class Registration extends Component {
   constructor() {
@@ -21,12 +22,13 @@ class Registration extends Component {
         this.setState({
           isLoggedIn: true
         });
+        location.replace("/");
       }
     });
   }
   render() {
     if (this.state.isLoggedIn) {
-      return <OrginizationProfile />;
+      return <App />;
     }
     return (
       <div className="registration">

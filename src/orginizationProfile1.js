@@ -15,7 +15,7 @@ class OrginizationProfile1 extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    axios.post("/registration", this.state).then(resp => {
+    axios.post("/orginizationProfile1", this.state).then(resp => {
       console.log(resp);
       if (resp.data.success) {
         this.setState({

@@ -1,38 +1,28 @@
 import ReactDOM from "react-dom";
 import React, { Component } from "react";
+// import { HashRouter, Route } from "react-router-dom";
 import axios from "./axios";
 import { BrowserRouter, Route } from "react-router-dom";
-// import OrginizationProfile1 from "./orginizationProfile1";
-// import OrginizationProfile2 from "./orginizationProfile2";
-// import OrginizationProfile3 from "./orginizationProfile3";
+import OrginizationProfile1 from "./orginizationProfile1";
+import OrginizationProfile2 from "./orginizationProfile2";
+import OrginizationProfile3 from "./orginizationProfile3";
 
 class OrginizationProfile extends Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    // this.state = {
+    //   nextPage: 0
+    // };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    axios.post("/organizationProfile", this.state).then(resp => {
-      console.log(resp);
-      if (resp.data.success) {
-        this.setState({
-          isLoggedIn: true
-        });
-      }
-    });
-  }
+
   render() {
-    // if (this.state.isLoggedIn) {
-    //   return <OrginizationProfile1 />;
-    // }
     return (
       <div className="registration">
         <div className=" registrationInfo">
@@ -42,7 +32,7 @@ class OrginizationProfile extends Component {
             organization.
           </p>
         </div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.handleSubmit0}>
           <input
             onChange={this.handleChange}
             name="orginization"
@@ -366,10 +356,11 @@ class OrginizationProfile extends Component {
             type="password"
           />
 
-          <button type="submit">Sign Up</button>
+          <button type="submit">Next Page</button>
         </form>
       </div>
     );
   }
 }
+
 export default OrginizationProfile;

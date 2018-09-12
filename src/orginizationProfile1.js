@@ -2,28 +2,28 @@ import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import axios from "./axios";
 class OrginizationProfile1 extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    axios.post("/orginizationProfile1", this.state).then(resp => {
-      console.log(resp);
-      if (resp.data.success) {
-        this.setState({
-          isLoggedIn: true
-        });
-      }
-    });
-  }
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   axios.post("/orginizationProfile1", this.state).then(resp => {
+  //     console.log(resp);
+  //     if (resp.data.success) {
+  //       this.setState({
+  //         isLoggedIn: true
+  //       });
+  //     }
+  //   });
+  // }
   render() {
     // if (this.state.isLoggedIn) {
     //   return <OrginizationProfile />;
@@ -37,7 +37,7 @@ class OrginizationProfile1 extends Component {
             organization.
           </p>
         </div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.handleSubmit}>
           <input
             onChange={this.handleChange}
             name="email"

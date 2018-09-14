@@ -1,25 +1,13 @@
 import ReactDOM from "react-dom";
 import React, { Component } from "react";
-// import { HashRouter, Route } from "react-router-dom";
 import axios from "./axios";
+import history from "./history";
 import { BrowserRouter, Route } from "react-router-dom";
-import OrginizationProfile1 from "./orginizationProfile1";
-import OrginizationProfile2 from "./orginizationProfile2";
-import OrginizationProfile3 from "./orginizationProfile3";
 
 class OrginizationProfile extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   nextPage: 0
-    // };
-    this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    this.state = {};
   }
 
   render() {
@@ -32,22 +20,22 @@ class OrginizationProfile extends Component {
             organization.
           </p>
         </div>
-        <form onSubmit={this.props.handleSubmit0}>
+        <form>
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="orginization"
             placeholder="Name of Orginization"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="address"
             placeholder="Address"
             type="text"
           />
           <br />
-          <select name="country" onChange={this.handleChange}>
+          <select name="country" onChange={this.props.handleChange}>
             <option value="Country">Country</option>
             <option value="Afghanistan">Afghanistan</option>
             <option value="Albania">Albania</option>
@@ -111,7 +99,7 @@ class OrginizationProfile extends Component {
             </option>
             <option value="Cook Islands">Cook Islands</option>
             <option value="Costa Rica">Costa Rica</option>
-            <option value="Cote D'ivoire">Cote D'ivoire</option>
+            <option value="Cote D'ivoire">Cote D ivoire</option>
             <option value="Croatia">Croatia</option>
             <option value="Cuba">Cuba</option>
             <option value="Cyprus">Cyprus</option>
@@ -181,13 +169,13 @@ class OrginizationProfile extends Component {
             <option value="Kenya">Kenya</option>
             <option value="Kiribati">Kiribati</option>
             <option value="Korea, Democratic People's Republic of">
-              Korea, Democratic People's Republic of
+              Korea, Democratic Peoples Republic of
             </option>
             <option value="Korea, Republic of">Korea, Republic of</option>
             <option value="Kuwait">Kuwait</option>
             <option value="Kyrgyzstan">Kyrgyzstan</option>
             <option value="Lao People's Democratic Republic">
-              Lao People's Democratic Republic
+              Lao Peoples Democratic Republic
             </option>
             <option value="Latvia">Latvia</option>
             <option value="Lebanon">Lebanon</option>
@@ -343,20 +331,25 @@ class OrginizationProfile extends Component {
           </select>
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="legalentity"
             placeholder="Legal Entity"
             type="email"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="contactperson"
             placeholder="Contact Person"
             type="password"
           />
 
-          <button type="submit">Next Page</button>
+          <button
+            type="button"
+            onClick={event => this.props.goToNextPage(event, 2)}
+          >
+            Next Page
+          </button>
         </form>
       </div>
     );

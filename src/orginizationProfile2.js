@@ -1,29 +1,23 @@
 import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import axios from "./axios";
+import history from "./history";
 class OrginizationProfile2 extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-  handleSubmit(e) {
-    e.preventDefault();
-    axios.post("/registration", this.state).then(resp => {
-      console.log(resp);
-      if (resp.data.success) {
-        this.setState({
-          isLoggedIn: true
-        });
-      }
-    });
-  }
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   axios.post("/registration", this.state).then(resp => {
+  //     console.log(resp);
+  //     if (resp.data.success) {
+  //       this.setState({
+  //         isLoggedIn: true
+  //       });
+  //     }
+  //   });
+  // }
   render() {
     // if (this.state.isLoggedIn) {
     //   return <OrginizationProfile />;
@@ -37,43 +31,45 @@ class OrginizationProfile2 extends Component {
             organization.
           </p>
         </div>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="foundation"
             placeholder="Year of Foundation"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="employe"
             placeholder="Number of Employes"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="volunteers"
             placeholder="Number of volunteers"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="mission"
             placeholder="Mission Statement of Your Orginization"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="revenue"
             placeholder="Yearly Revenue"
             type="text"
           />
 
-          <button type="submit">Sign Up</button>
+          <button onClick={event => this.props.goToNextPage(event, 4)}>
+            Next Page
+          </button>
         </form>
       </div>
     );

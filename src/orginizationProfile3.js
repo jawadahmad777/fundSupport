@@ -2,32 +2,17 @@ import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import axios from "./axios";
 class OrginizationProfile3 extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    axios.post("/registration", this.state).then(resp => {
-      console.log(resp);
-      if (resp.data.success) {
-        this.setState({
-          isLoggedIn: true
-        });
-      }
-    });
-  }
+
   render() {
-    // if (this.state.isLoggedIn) {
-    //   return <OrginizationProfile />;
-    // }
     return (
       <div className="registration">
         <div className=" registrationInfo">
@@ -37,43 +22,45 @@ class OrginizationProfile3 extends Component {
             organization.
           </p>
         </div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.handleSubmit}>
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="org"
             placeholder="Current or Farmer funding Orginization Name"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="fundingname"
             placeholder="Current or Farmer funding program Name"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="time"
             placeholder="Current or Farmer funding, Start or End"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="pic"
             placeholder="EU PIC Number"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="comment"
             placeholder="Comment"
             type="text"
           />
           <br />
-          <button type="submit">Sign Up</button>
+          <button onClick={event => this.props.goToNextPage(event, 5)}>
+            Sign Up
+          </button>
         </form>
       </div>
     );

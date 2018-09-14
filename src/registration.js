@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "./axios";
 import App from "./app";
-import OrginizationProfile from "./orginizationProfile";
+// import OrginizationProfile from "./orginizationProfile";
 class Registration extends Component {
   constructor() {
     super();

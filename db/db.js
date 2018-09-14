@@ -5,33 +5,55 @@ if (process.env.DATABASE_URL) {
 } else {
   db = spicedPg("postgres:postgres:postgres@localhost:5432/fundsupport");
 }
-//////////////////////////////////////////////////////////////////////////
-exports.orginizationProfile1 = function(email, phone, website, Fields) {
-  const query =
-    "INSERT INTO orginization ( orginization_email, phone, website, fields_activites) VALUES ($1, $2, $3, $4, $5) RETURNING *";
 
-  const params = [email, phone, website, Fields];
-  return db.query(query, params).then(results => {
-    return results.rows[0];
-  });
-};
 //////////////////////////////////////////////////////////////////////
 exports.orginizationProfile = function(
-  OrginizationName,
+  orginization,
   address,
   country,
   legalEntity,
-  contactPerson
+  contactPerson,
+  email,
+  phone,
+  website,
+  Fields,
+  foundation,
+  employe,
+  volunteers,
+  mission,
+  revenue,
+  org,
+  fundingname,
+  time,
+  pic,
+  comment
 ) {
-  const query =
-    "INSERT INTO orginization (  orginization_name, address, country, legal_entity, contact_person) VALUES ($1, $2, $3, $4, $5) RETURNING *";
+  const query = `INSERT INTO orginization(
+      orginization_name, address, country, legal_entity, contact_person,
+      orginization_email, phone, website, fields_activites, year_foundation, number_employees, number_valunteers,
+      mission_orginization, yearly_revenue, Current_funding_org, Current_funding_name, funding_start_end, eu_pic_number, comment
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9 , $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) RETURNING * `;
 
   const params = [
-    OrginizationName,
+    orginization,
     address,
     country,
     legalEntity,
-    contactPerson
+    contactPerson,
+    email,
+    phone,
+    website,
+    Fields,
+    foundation,
+    employe,
+    volunteers,
+    mission,
+    revenue,
+    org,
+    fundingname,
+    time,
+    pic,
+    comment
   ];
   return db.query(query, params).then(results => {
     return results.rows[0];
@@ -49,8 +71,9 @@ exports.createUser = function(
   website,
   source
 ) {
-  const query =
-    "INSERT INTO users (first_name, last_name,email, hashed_password, project, orginization, website,  source) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *";
+  const query = `INSERT INTO users
+    (first_name, last_name,email, hashed_password, project, orginization, website,  source)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
 
   const params = [
     firstName,
@@ -66,14 +89,7 @@ exports.createUser = function(
     return results.rows[0];
   });
 };
-///////////////////////////////////////////////////////
-// exports.sourceIt = function(source, source_id) {
-//   const query = `INSERT into source (source, source_id ) VALUES ($1, $2);`;
-//   const params = [source, source_id];
-//   return db.query(query, params).then(results => {
-//     return results.rows[0];
-//   });
-// };
+
 /////////////////////////////////////////////////////////
 exports.checkEmail = function(email) {
   const q = "SELECT * FROM users WHERE email = $1;";

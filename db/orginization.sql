@@ -2,7 +2,7 @@ DROP TABLE if exists orginization;
 
 CREATE TABLE orginization (
     id SERIAL primary key,
-    orginization_name VARCHAR(255) not null,
+    orginization_name VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
     country VARCHAR(255) NOT NULL,
     legal_entity VARCHAR(255) NOT NULL,
@@ -21,5 +21,5 @@ CREATE TABLE orginization (
     funding_start_end VARCHAR(255) NOT NULL,
     eu_pic_number VARCHAR(255) NOT NULL,
     comment  VARCHAR(255) NOT NULL,
-    creaste_at timestamp default CURRENT_TIMESTAMP
+    create_at timestamp default CURRENT_TIMESTAMP
 );

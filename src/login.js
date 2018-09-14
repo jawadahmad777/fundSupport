@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "./axios";
-import OrginizationProfile from "./orginizationProfile";
+// import OrginizationProfile from "./orginizationProfile";
 import App from "./app";
 class Login extends Component {
   constructor() {

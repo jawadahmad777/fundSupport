@@ -54,16 +54,28 @@ select {
   padding: 20px 0;
   margin-left: 76%;
 }
-.navigation li {
+.navigation li,
+.navigation1 li {
   list-style: none;
   display: inline;
 }
-.navigation li a {
+.navigation li a,
+.navigation1 li a {
   text-decoration: none;
 }
-.navigation a:hover {
+.navigation a:hover,
+.navigation1 a:hover {
   color: silver;
 }
 .some {
   font-size: 18px;
+}
+.navigation1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 50%;
+  font-size: 18px;
+  text-align: center;
+  padding: 20px 0;
+  margin-left: 49%;
 }

@@ -26,35 +26,8 @@ app.use(
     maxAge: 1000 * 60 * 60 * 24 * 14
   })
 );
-////////////////////////////////////////////////////////////////////////////////////
-app.post("/orginizationProfile1", (req, res) => {
-  console.log(req.body);
-  if (
-    req.body.email == "" ||
-    req.body.phone == "" ||
-    req.body.website == "" ||
-    req.body.fields == ""
-  ) {
-    res.json({
-      success: false,
-      message: "Please Fill in the whole fields"
-    });
-  } else {
-    db.orginizationProfile1(
-      req.body.email,
-      req.body.phone,
-      req.body.website,
-      req.body.fields
-    );
-    req.session.loggedIn = false;
-    res.json({
-      success: false,
-      message: "Duplicate Email found, Please use another email address"
-    });
-  }
-});
 
-///////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 app.post("/orginizationProfile", (req, res) => {
   console.log(req.body);
   if (
@@ -62,7 +35,21 @@ app.post("/orginizationProfile", (req, res) => {
     req.body.address == "" ||
     req.body.country == "" ||
     req.body.legalentity == "" ||
-    req.body.contactperson == ""
+    req.body.contactperson == "" ||
+    req.body.email == "" ||
+    req.body.phone == "" ||
+    req.body.website == "" ||
+    req.body.fields == "" ||
+    req.body.foundation == "" ||
+    req.body.employe == "" ||
+    req.body.volunteers == "" ||
+    req.body.mission == "" ||
+    req.body.revenue == "" ||
+    req.body.org == "" ||
+    req.body.fundingname == "" ||
+    req.body.time == "" ||
+    req.body.pic == "" ||
+    req.body.comment == ""
   ) {
     res.json({
       success: false,
@@ -74,7 +61,21 @@ app.post("/orginizationProfile", (req, res) => {
       req.body.address,
       req.body.country,
       req.body.legalentity,
-      req.body.contactperson
+      req.body.contactperson,
+      req.body.email,
+      req.body.phone,
+      req.body.website,
+      req.body.fields,
+      req.body.foundation,
+      req.body.employe,
+      req.body.volunteers,
+      req.body.mission,
+      req.body.revenue,
+      req.body.org,
+      req.body.fundingname,
+      req.body.time,
+      req.body.pic,
+      req.body.comment
     );
     req.session.loggedIn = false;
     res.json({
@@ -166,7 +167,7 @@ app.post("/login", (req, res) => {
               success: true,
               message: "User Logged in successfully"
             });
-            res.redirect("/orginizationProfile");
+            // res.redirect("/orginizationProfile");
           } else {
             res.json({
               success: false,

@@ -1,33 +1,14 @@
 import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import axios from "./axios";
+import history from "./history";
 class OrginizationProfile1 extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  //   axios.post("/orginizationProfile1", this.state).then(resp => {
-  //     console.log(resp);
-  //     if (resp.data.success) {
-  //       this.setState({
-  //         isLoggedIn: true
-  //       });
-  //     }
-  //   });
-  // }
+
   render() {
-    // if (this.state.isLoggedIn) {
-    //   return <OrginizationProfile />;
-    // }
     return (
       <div className="registration">
         <div className=" registrationInfo">
@@ -37,36 +18,38 @@ class OrginizationProfile1 extends Component {
             organization.
           </p>
         </div>
-        <form onSubmit={this.props.handleSubmit}>
+        <form>
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="email"
             placeholder="Orginization Email"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="phone"
             placeholder="Phone"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="website"
             placeholder="Website"
             type="text"
           />
           <br />
           <input
-            onChange={this.handleChange}
+            onChange={this.props.handleChange}
             name="fields"
             placeholder="Fields of Activities"
             type="text"
           />
 
-          <button type="submit">Sign Up</button>
+          <button onClick={event => this.props.goToNextPage(event, 3)}>
+            Next Page
+          </button>
         </form>
       </div>
     );

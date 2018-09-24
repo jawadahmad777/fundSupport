@@ -1,5 +1,7 @@
 import ReactDOM from "react-dom";
+import ProjectProfile from "./projectProfile";
 import React, { Component } from "react";
+// import ProjectProfile from "./projectProfile";
 import axios from "./axios";
 class OrginizationProfile3 extends Component {
   constructor(props) {
@@ -13,6 +15,9 @@ class OrginizationProfile3 extends Component {
   }
 
   render() {
+    if (this.state.isLoggedIn) {
+      return <ProjectProfile />;
+    }
     return (
       <div className="registration">
         <div className=" registrationInfo">
@@ -62,6 +67,7 @@ class OrginizationProfile3 extends Component {
             Sign Up
           </button>
         </form>
+        <br />
       </div>
     );
   }

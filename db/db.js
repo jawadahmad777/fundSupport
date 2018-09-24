@@ -7,6 +7,38 @@ if (process.env.DATABASE_URL) {
 }
 
 //////////////////////////////////////////////////////////////////////
+exports.projectProfile = function(
+  projectname,
+  region,
+  focusproject,
+  targetgroup,
+  duration,
+  budget,
+  projectcost,
+  cost,
+  comment
+) {
+  const query = `INSERT INTO project(
+      project_name, region, focus_project, target_group, duration, budget, project_cost,
+      overhead_cost, comment
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING * `;
+
+  const params = [
+    projectname,
+    region,
+    focusproject,
+    targetgroup,
+    duration,
+    budget,
+    projectcost,
+    cost,
+    comment
+  ];
+  return db.query(query, params).then(results => {
+    return results.rows[0];
+  });
+};
+//////////////////////////////////////////////////////////////////////
 exports.orginizationProfile = function(
   orginization,
   address,
@@ -98,4 +130,3 @@ exports.checkEmail = function(email) {
     return results.rows;
   });
 };
-//

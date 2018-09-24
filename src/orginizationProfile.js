@@ -334,14 +334,14 @@ class OrginizationProfile extends Component {
             onChange={this.props.handleChange}
             name="legalentity"
             placeholder="Legal Entity"
-            type="email"
+            type="text"
           />
           <br />
           <input
             onChange={this.props.handleChange}
             name="contactperson"
             placeholder="Contact Person"
-            type="password"
+            type="text"
           />
 
           <button

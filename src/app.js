@@ -3,6 +3,7 @@ import OrginizationProfile from "./orginizationProfile";
 import OrginizationProfile1 from "./orginizationProfile1";
 import OrginizationProfile2 from "./orginizationProfile2";
 import OrginizationProfile3 from "./orginizationProfile3";
+import ProjectProfile from "./projectProfile";
 import axios from "./axios";
 import history from "./history";
 import { BrowserRouter, Route, Link, Router } from "react-router-dom";
@@ -13,8 +14,6 @@ export default class App extends React.Component {
     this.state = {};
     this.goToNextPage = this.goToNextPage.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
-    console.log("are you there?");
   }
   handleChange(e) {
     this.setState(
@@ -45,7 +44,7 @@ export default class App extends React.Component {
             isLoggedIn: true
           });
         }
-      });
+      }) && history.push("/projectProfile");
     }
   }
 
@@ -101,6 +100,7 @@ export default class App extends React.Component {
                 />
               )}
             />
+            <Route path="/projectProfile" render={() => <ProjectProfile />} />
           </div>
         </Router>
       </div>

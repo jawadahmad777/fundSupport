@@ -28,6 +28,44 @@ app.use(
 );
 
 /////////////////////////////////////////////////////////////////////////////////////
+app.post("/projectProfile", (req, res) => {
+  console.log(req.body);
+  if (
+    req.body.projectname == "" ||
+    req.body.region == "" ||
+    req.body.focusproject == "" ||
+    req.body.targetgroup == "" ||
+    req.body.duration == "" ||
+    req.body.budget == "" ||
+    req.body.projectcost == "" ||
+    req.body.cost == "" ||
+    req.body.comment == ""
+  ) {
+    res.json({
+      success: false,
+      message: "Please Fill in the whole fields"
+    });
+  } else {
+    db.projectProfile(
+      req.body.projectname,
+      req.body.region,
+      req.body.focusproject,
+      req.body.targetgroup,
+      req.body.duration,
+      req.body.budget,
+      req.body.projectcost,
+      req.body.cost,
+      req.body.comment
+    );
+    req.session.loggedIn = false;
+    res.json({
+      success: false,
+      message: "Duplicate Email found, Please use another email address"
+    });
+  }
+});
+
+///////////////////////////////////////////////////////////////////////////////////////
 app.post("/orginizationProfile", (req, res) => {
   console.log(req.body);
   if (

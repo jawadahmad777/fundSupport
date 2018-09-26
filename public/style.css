@@ -54,15 +54,7 @@ select {
   padding: 20px 0;
   margin-left: 75%;
 }
-.navigation li,
-.navigation1 li {
-  list-style: none;
-  display: inline;
-}
-.navigation li a,
-.navigation1 li a {
-  text-decoration: none;
-}
+
 .navigation a:hover,
 .navigation1 a:hover {
   color: silver;

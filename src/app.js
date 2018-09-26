@@ -4,6 +4,7 @@ import OrginizationProfile1 from "./orginizationProfile1";
 import OrginizationProfile2 from "./orginizationProfile2";
 import OrginizationProfile3 from "./orginizationProfile3";
 import ProjectProfile from "./projectProfile";
+// import EditOrginizationProfile from "./editOrginizationProfile";
 import axios from "./axios";
 import history from "./history";
 import { BrowserRouter, Route, Link, Router } from "react-router-dom";
@@ -14,6 +15,7 @@ export default class App extends React.Component {
     this.state = {};
     this.goToNextPage = this.goToNextPage.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.goToPrvPage = this.goToPrvPage.bind(this);
   }
   handleChange(e) {
     this.setState(
@@ -27,6 +29,7 @@ export default class App extends React.Component {
   }
 
   goToNextPage(e, pageNum) {
+    var pageNum;
     e.preventDefault();
     if (pageNum == 1) {
       history.push("/firstPage");
@@ -48,6 +51,19 @@ export default class App extends React.Component {
     }
   }
 
+  goToPrvPage(e, pageNum) {
+    e.preventDefault();
+    if (pageNum == 1) {
+      history.push("/firstPage");
+    } else if (pageNum == 2) {
+      history.push("/secondPage");
+    } else if (pageNum == 3) {
+      history.push("/thirdPage");
+    } else if (pageNum == 4) {
+      history.push("/lastPage");
+    }
+  }
+
   componentDidMount() {
     history.push("/firstPage");
   }
@@ -58,10 +74,8 @@ export default class App extends React.Component {
         <Router history={history}>
           <div>
             <div className="navigation1">
-              <Link to="/firstPage">first page </Link>
-              <Link to="/secondPage">second page </Link>
-              <Link to="/thirdPage">third page </Link>
-              <Link to="/lastPage">last page </Link>
+              <Link to="/firstPage">OrginizationProfile </Link>
+              <Link to="/projectProfile">Project Profile </Link>
             </div>
             <Route
               path="/firstPage"
@@ -69,16 +83,17 @@ export default class App extends React.Component {
                 <OrginizationProfile
                   handleChange={this.handleChange}
                   goToNextPage={this.goToNextPage}
+                  goToPrvPage={this.goToPrvPage}
                 />
               )}
             />
-
             <Route
               path="/secondPage"
               render={() => (
                 <OrginizationProfile1
                   handleChange={this.handleChange}
                   goToNextPage={this.goToNextPage}
+                  goToPrvPage={this.goToPrvPage}
                 />
               )}
             />
@@ -88,6 +103,7 @@ export default class App extends React.Component {
                 <OrginizationProfile2
                   handleChange={this.handleChange}
                   goToNextPage={this.goToNextPage}
+                  goToPrvPage={this.goToPrvPage}
                 />
               )}
             />
@@ -97,13 +113,20 @@ export default class App extends React.Component {
                 <OrginizationProfile3
                   handleChange={this.handleChange}
                   goToNextPage={this.goToNextPage}
+                  goToPrvPage={this.goToPrvPage}
                 />
               )}
             />
             <Route path="/projectProfile" render={() => <ProjectProfile />} />
           </div>
         </Router>
+        {/* <EditOrginizationProfile />*/}
       </div>
     );
   }
 }
+
+// <Link to="/firstPage">first page </Link>
+// <Link to="/secondPage">second page </Link>
+// <Link to="/thirdPage">third page </Link>
+// <Link to="/lastPage">last page </Link>

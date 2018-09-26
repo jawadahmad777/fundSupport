@@ -4,7 +4,7 @@ import axios from "./axios";
 import history from "./history";
 import { BrowserRouter, Route } from "react-router-dom";
 
-class OrginizationProfile extends Component {
+class EditOrginizationProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,7 +14,7 @@ class OrginizationProfile extends Component {
     return (
       <div className="registration">
         <div className=" registrationInfo">
-          <h1>Orginization Profile</h1>
+          <h1>Conform you Information</h1>
           <p className="some">
             The more detailed your organization profile is<br /> the better
             fitted will be the funding opportunities that we will find for your
@@ -344,7 +344,105 @@ class OrginizationProfile extends Component {
             placeholder="Contact Person"
             type="text"
           />
-
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="email"
+            placeholder="Orginization Email"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="phone"
+            placeholder="Phone"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="website"
+            placeholder="Website"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="fields"
+            placeholder="Fields of Activities"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="foundation"
+            placeholder="Year of Foundation"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="employe"
+            placeholder="Number of Employes"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="volunteers"
+            placeholder="Number of volunteers"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="mission"
+            placeholder="Mission Statement of Your Orginization"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="revenue"
+            placeholder="Yearly Revenue"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="org"
+            placeholder="Current or Farmer funding Orginization Name"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="fundingname"
+            placeholder="Current or Farmer funding program Name"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="time"
+            placeholder="Current or Farmer funding, Start or End"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="pic"
+            placeholder="EU PIC Number"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.props.handleChange}
+            name="comment"
+            placeholder="Comment"
+            type="text"
+          />
+          <br />
           <button
             type="button"
             onClick={event => this.props.goToNextPage(event, 2)}
@@ -357,4 +455,4 @@ class OrginizationProfile extends Component {
   }
 }
 
-export default OrginizationProfile;
+export default EditOrginizationProfile;

@@ -50,6 +50,9 @@ class OrginizationProfile1 extends Component {
           <button onClick={event => this.props.goToNextPage(event, 3)}>
             Next Page
           </button>
+          <button onClick={event => this.props.goToPrvPage(event, 1)}>
+            Prv Page
+          </button>
         </form>
       </div>
     );

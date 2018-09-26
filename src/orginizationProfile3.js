@@ -66,6 +66,9 @@ class OrginizationProfile3 extends Component {
           <button onClick={event => this.props.goToNextPage(event, 5)}>
             Sign Up
           </button>
+          <button onClick={event => this.props.goToPrvPage(event, 3)}>
+            Prv Page
+          </button>
         </form>
         <br />
       </div>

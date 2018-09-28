@@ -32,15 +32,7 @@ class FundingOpportunities extends Component {
     return (
       <div className="registration">
         <div className=" registrationInfo">
-          <h1>Project Profile</h1>
-          <p className="some">
-            The more detailed the project profile is,the better fitted will be
-            the funding opportunities that we can find for your project.
-            Therefore we strongly recommend to submit the profile as detailed as
-            possible Contrary to common searches, we also provide strong matches
-            that might deviate in some aspects, if we think these funding
-            opportunities might be interesting for your project.
-          </p>
+          <h1>Fundding opportunities Profile here!</h1>
         </div>
         <form onSubmit={this.handleSubmit2}>
           <input

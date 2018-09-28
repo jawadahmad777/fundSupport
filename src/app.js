@@ -5,6 +5,7 @@ import OrginizationProfile2 from "./orginizationProfile2";
 import OrginizationProfile3 from "./orginizationProfile3";
 import ProjectProfile from "./projectProfile";
 import Summary from "./summary";
+import FundingOpportunities from "./fundingOpportunities";
 // import EditOrginizationProfile from "./editOrginizationProfile";
 import axios from "./axios";
 import history from "./history";
@@ -59,7 +60,7 @@ export default class App extends React.Component {
             isLoggedIn: true
           });
         }
-      });
+      }) && history.push("/fundingOpportunities");
     }
   }
 
@@ -88,6 +89,7 @@ export default class App extends React.Component {
             <div className="navigation1">
               <Link to="/firstPage">OrginizationProfile </Link>
               <Link to="/projectProfile">Project Profile </Link>
+              <Link to="/fundingOpportunities">Funding Opportunities </Link>
             </div>
             <Route
               path="/firstPage"
@@ -146,6 +148,10 @@ export default class App extends React.Component {
                   goToNextPage={this.goToNextPage}
                 />
               )}
+            />
+            <Route
+              path="/fundingOpportunities"
+              render={() => <FundingOpportunities />}
             />
           </div>
         </Router>

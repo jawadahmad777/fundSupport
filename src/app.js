@@ -4,6 +4,7 @@ import OrginizationProfile1 from "./orginizationProfile1";
 import OrginizationProfile2 from "./orginizationProfile2";
 import OrginizationProfile3 from "./orginizationProfile3";
 import ProjectProfile from "./projectProfile";
+import Summary from "./summary";
 // import EditOrginizationProfile from "./editOrginizationProfile";
 import axios from "./axios";
 import history from "./history";
@@ -48,6 +49,17 @@ export default class App extends React.Component {
           });
         }
       }) && history.push("/projectProfile");
+    } else if (pageNum == 6) {
+      history.push("/summary");
+    } else if (pageNum == 7) {
+      axios.post("/projectProfile", this.state).then(resp => {
+        console.log(resp);
+        if (resp.data.success) {
+          this.setState({
+            isLoggedIn: true
+          });
+        }
+      });
     }
   }
 
@@ -117,7 +129,24 @@ export default class App extends React.Component {
                 />
               )}
             />
-            <Route path="/projectProfile" render={() => <ProjectProfile />} />
+            <Route
+              path="/projectProfile"
+              render={() => (
+                <ProjectProfile
+                  handleChange={this.handleChange}
+                  goToNextPage={this.goToNextPage}
+                />
+              )}
+            />
+            <Route
+              path="/summary"
+              render={() => (
+                <Summary
+                  handleChange={this.handleChange}
+                  goToNextPage={this.goToNextPage}
+                />
+              )}
+            />
           </div>
         </Router>
         {/* <EditOrginizationProfile />*/}

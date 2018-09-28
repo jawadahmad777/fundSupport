@@ -39,7 +39,8 @@ app.post("/projectProfile", (req, res) => {
     req.body.budget == "" ||
     req.body.projectcost == "" ||
     req.body.cost == "" ||
-    req.body.comment == ""
+    req.body.comment == "" ||
+    req.body.summary == ""
   ) {
     res.json({
       success: false,
@@ -55,7 +56,8 @@ app.post("/projectProfile", (req, res) => {
       req.body.budget,
       req.body.projectcost,
       req.body.cost,
-      req.body.comment
+      req.body.comment,
+      req.body.summary
     );
     req.session.loggedIn = false;
     res.json({

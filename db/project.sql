@@ -11,5 +11,6 @@ CREATE TABLE project (
     project_cost  VARCHAR(255)  NOT NULL,
     overhead_cost VARCHAR(255)  NOT NULL,
     comment VARCHAR(255),
+    summary VARCHAR(1000),
     create_at timestamp default CURRENT_TIMESTAMP
 );

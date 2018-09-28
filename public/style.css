@@ -9,6 +9,10 @@ form > select {
   margin-bottom: 8px;
   padding: 4px;
 }
+textarea {
+  width: 99%;
+  height: 300px;
+}
 input[type="text"],
 input[type="email"],
 input[type="password"],

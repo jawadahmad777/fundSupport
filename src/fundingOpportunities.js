@@ -37,66 +37,125 @@ class FundingOpportunities extends Component {
         <form onSubmit={this.handleSubmit2}>
           <input
             onChange={this.handleChange}
-            name="projectname"
-            placeholder="Name of Project"
+            name="orginizationName"
+            placeholder="Orginizations"
             type="text"
           />
           <br />
           <input
             onChange={this.handleChange}
-            name="region"
-            placeholder="Region/address of project implementation"
+            name="focusArea"
+            placeholder="Focus Areas"
             type="text"
           />
           <br />
 
           <input
             onChange={this.handleChange}
-            name="focusproject"
-            placeholder="Focus area of project"
+            name="legalForms"
+            placeholder="Legal Forms"
             type="text"
           />
           <br />
           <input
             onChange={this.handleChange}
-            name="targetgroup"
-            placeholder="Target group of Project"
+            name="types"
+            placeholder="Types"
             type="text"
           />
           <br />
 
+          <input
+            onChange={this.handleChange}
+            name="regions"
+            placeholder="Regions"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.handleChange}
+            name="contacts"
+            placeholder="contacts"
+            type="text"
+          />
+          <br />
+
+          <input
+            onChange={this.handleChange}
+            name="minFunding"
+            placeholder="Min Funding"
+            type="text"
+          />
+          <input
+            onChange={this.handleChange}
+            name="minFundingDescription"
+            placeholder="Min Funding Description"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.handleChange}
+            name="mixFunding"
+            placeholder="Mix Funding"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.handleChange}
+            name="mixFundingDescription"
+            placeholder="Min Funding Description"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.handleChange}
+            name="startDate"
+            placeholder="Start Date"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.handleChange}
+            name="endDate"
+            placeholder="End Date"
+            type="text"
+          />
+          <br />
           <input
             onChange={this.handleChange}
             name="duration"
-            placeholder="Start/End"
-            type="text"
-          />
-          <br />
-          <input
-            onChange={this.handleChange}
-            name="budget"
-            placeholder="Budget"
+            placeholder="Duration"
             type="text"
           />
           <br />
 
+          <select name="durationType" onChange={this.handleChange}>
+            <option value="durationType">Duration Type</option>
+            <option value="days">Days</option>
+            <option value="weeks">Weeks</option>
+            <option value="months">Months</option>
+            <option value="years">Years</option>
+          </select>
+
+          <br />
           <input
             onChange={this.handleChange}
-            name="projectcost"
-            placeholder="Project cost/Activity based cost"
-            type="text"
-          />
-          <input
-            onChange={this.handleChange}
-            name="cost"
-            placeholder="Overhead cost (payroll, etc.):Running Costs"
+            name="deadline"
+            placeholder="Deadline"
             type="text"
           />
           <br />
           <input
             onChange={this.handleChange}
-            name="comment"
-            placeholder="Comment"
+            name="ownShare"
+            placeholder="Own Share"
+            type="text"
+          />
+          <br />
+          <input
+            onChange={this.handleChange}
+            name="details"
+            placeholder="details"
             type="text"
           />
           <button type="submit">Submit</button>

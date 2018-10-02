@@ -18,7 +18,7 @@ class FundingOpportunities extends Component {
   }
   handleSubmit2(e) {
     e.preventDefault();
-    axios.post("/projectProfile", this.state).then(resp => {
+    axios.post("/fundingOpportunities", this.state).then(resp => {
       console.log(resp);
       if (resp.data.success) {
         this.setState({
@@ -37,14 +37,14 @@ class FundingOpportunities extends Component {
         <form onSubmit={this.handleSubmit2}>
           <input
             onChange={this.handleChange}
-            name="orginizationName"
+            name="orginizationsName"
             placeholder="Orginizations"
             type="text"
           />
           <br />
           <input
             onChange={this.handleChange}
-            name="focusArea"
+            name="focusAreas"
             placeholder="Focus Areas"
             type="text"
           />
@@ -67,7 +67,7 @@ class FundingOpportunities extends Component {
 
           <input
             onChange={this.handleChange}
-            name="regions"
+            name="reagions"
             placeholder="Regions"
             type="text"
           />
@@ -86,6 +86,7 @@ class FundingOpportunities extends Component {
             placeholder="Min Funding"
             type="text"
           />
+          <br />
           <input
             onChange={this.handleChange}
             name="minFundingDescription"

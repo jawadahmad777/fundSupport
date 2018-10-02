@@ -26,7 +26,60 @@ app.use(
     maxAge: 1000 * 60 * 60 * 24 * 14
   })
 );
+//////////////////////////////////////////////////////////////////////////////////
 
+app.post("/fundingOpportunities", (req, res) => {
+  console.log(req.body);
+  if (
+    req.body.orginizationsName == "" ||
+    req.body.focusAreas == "" ||
+    req.body.legalForms == "" ||
+    req.body.types == "" ||
+    req.body.reagions == "" ||
+    req.body.contacts == "" ||
+    req.body.minFunding == "" ||
+    req.body.minFundingDescription == "" ||
+    req.body.mixFunding == "" ||
+    req.body.mixFundingDescription == "" ||
+    req.body.startDate == "" ||
+    req.body.endDate == "" ||
+    req.body.duration == "" ||
+    req.body.durationType == "" ||
+    req.body.deadline == "" ||
+    req.body.ownShare == "" ||
+    req.body.details == ""
+  ) {
+    res.json({
+      success: false,
+      message: "Please fill in the whole fields"
+    });
+  } else {
+    db.fundingOpportunities(
+      req.body.orginizationsName,
+      req.body.focusAreas,
+      req.body.legalForms,
+      req.body.types,
+      req.body.reagions,
+      req.body.contacts,
+      req.body.minFunding,
+      req.body.minFundingDescription,
+      req.body.mixFunding,
+      req.body.mixFundingDescription,
+      req.body.startDate,
+      req.body.endDate,
+      req.body.duration,
+      req.body.durationType,
+      req.body.deadline,
+      req.body.ownShare,
+      req.body.details
+    );
+    req.session.loggedIn = false;
+    res.json({
+      success: false,
+      message: "Duplicate Email found, Please use another email address"
+    });
+  }
+});
 /////////////////////////////////////////////////////////////////////////////////////
 app.post("/projectProfile", (req, res) => {
   console.log(req.body);

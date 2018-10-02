@@ -7,6 +7,55 @@ if (process.env.DATABASE_URL) {
 }
 
 //////////////////////////////////////////////////////////////////////
+exports.fundingOpportunities = function(
+  orginizationsName,
+  focusAreas,
+  legalForms,
+  types,
+  reagions,
+  contacts,
+  minFunding,
+  minFundingDescription,
+  mixFunding,
+  mixFundingDescription,
+  startDate,
+  endDate,
+  duration,
+  durationType,
+  deadline,
+  ownShare,
+  details
+) {
+  const query = `INSERT INTO fundingOpportunities(
+    orginizations, focus_areas, legal_forms, types,reagions, contacts, min_funding, min_funding_description, mix_funding,
+    mix_funding_description, start_date, end_date, duration, duration_type, deadline, own_share, details
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING * `;
+
+  const params = [
+    orginizationsName,
+    focusAreas,
+    legalForms,
+    types,
+    reagions,
+    contacts,
+    minFunding,
+    minFundingDescription,
+    mixFunding,
+    mixFundingDescription,
+    startDate,
+    endDate,
+    duration,
+    durationType,
+    deadline,
+    ownShare,
+    details
+  ];
+  return db.query(query, params).then(results => {
+    return results.rows[0];
+  });
+};
+
+//////////////////////////////////////////////////////////////////////
 exports.projectProfile = function(
   projectname,
   region,

@@ -1,6 +1,6 @@
-DROP TABLE if exists project;
+DROP TABLE if exists fundingOpportunities;
 
-CREATE TABLE project (
+CREATE TABLE fundingOpportunities (
     id SERIAL primary key,
     orginizations VARCHAR(255) NOT NULL,
     focus_areas VARCHAR(255) NOT NULL,
